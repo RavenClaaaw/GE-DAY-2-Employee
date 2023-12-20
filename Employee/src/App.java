@@ -12,10 +12,12 @@ public class App {
         switch (option) {
             case 1:
                 FullTime fte = new FullTime();
+                System.out.println("MONTHLY:- " + fte.getMonthlyWage());
                 break;
             
             case 2:
                 PartTime pte = new PartTime();
+                System.out.println("MONTHLY:- " + pte.getMonthlyWage());
                 break;
 
             default:
@@ -28,6 +30,7 @@ public class App {
 class Employee{
     private int hours = 20;   //Full Time Hours
     private int wage = 8;    //Full Time Wage
+    public int days = 20;
 
     public int getHours() {
         return hours;
@@ -45,6 +48,16 @@ class Employee{
             return false;
         }
     }
+
+    int getMonthlyWage(){
+        int totalwage = 0;
+
+        for(int i=0; i<this.days; i++){
+            if(this.isPresent()) totalwage += (this.getHours() * this.getWage());
+        }
+
+        return totalwage;
+    }
 }
 
 class FullTime extends Employee{
@@ -55,7 +68,7 @@ class FullTime extends Employee{
 }
 
 class PartTime extends Employee{
-    int getPartTimeWage(){
+    int getDailyWage(){
         if(this.isPresent()) return (this.getHours() * this.getWage());
         else return 0;
     }

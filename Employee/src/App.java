@@ -1,24 +1,40 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome To Employee Wage Computation: ");
         
-        PartEmployee partE = new PartEmployee(); 
-        System.out.println(partE.getPartTimeWage());
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("1. Full Time Employee \n2. Part Time Employee");
+        int option = scanner.nextInt();
+
+        switch (option) {
+            case 1:
+                FullTime fte = new FullTime();
+                break;
+            
+            case 2:
+                PartTime pte = new PartTime();
+                break;
+
+            default:
+                System.out.println("INVALID OPTION");
+                break;
+        }
     }
 }
 
 class Employee{
-    private int WPH = 20;   //Wage Per Hour
-    private int FDH = 8;    //Full Day Hour
+    private int hours = 20;   //Full Time Hours
+    private int wage = 8;    //Full Time Wage
 
-    public int getFDH() {
-        return FDH;
+    public int getHours() {
+        return hours;
     }
 
-    public int getWPH() {
-        return WPH;
+    public int getWage() {
+        return wage;
     }
 
     boolean isPresent(){
@@ -29,16 +45,18 @@ class Employee{
             return false;
         }
     }
+}
 
+class FullTime extends Employee{
     int getDailyWage(){
-        if(this.isPresent()) return (WPH * FDH);
+        if(this.isPresent()) return (this.getHours() * this.getWage());
         else return 0;
     }
 }
 
-class PartEmployee extends Employee{
+class PartTime extends Employee{
     int getPartTimeWage(){
-        if(this.isPresent()) return (this.getWPH() * this.getFDH());
+        if(this.isPresent()) return (this.getHours() * this.getWage());
         else return 0;
     }
 }

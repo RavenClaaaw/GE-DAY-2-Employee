@@ -28,8 +28,8 @@ public class App {
 }
 
 class Employee{
-    private int hours = 20;   //Full Time Hours
-    private int wage = 8;    //Full Time Wage
+    private int hours = 8;   //Full Time Hours
+    private int wage = 20;    //Full Time Wage
     public int days = 20;
 
     public int getHours() {
@@ -52,8 +52,14 @@ class Employee{
     int getMonthlyWage(){
         int totalwage = 0;
 
+        int counter = 0;
         for(int i=0; i<this.days; i++){
-            if(this.isPresent()) totalwage += (this.getHours() * this.getWage());
+            if(counter >= 100) break;
+            
+            if(this.isPresent()){
+                totalwage += (this.hours * this.wage);
+                counter += this.hours;
+            }
         }
 
         return totalwage;

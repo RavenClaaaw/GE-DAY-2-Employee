@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 
 public class App {
@@ -6,76 +5,48 @@ public class App {
         System.out.println("Welcome To Employee Wage Computation: ");
         
         Scanner scanner = new Scanner(System.in);
-        System.out.println("1. Full Time Employee \n2. Part Time Employee");
-        int option = scanner.nextInt();
 
-        switch (option) {
-            case 1:
-                FullTime fte = new FullTime();
-                System.out.println("MONTHLY:- " + fte.getMonthlyWage());
-                break;
-            
-            case 2:
-                PartTime pte = new PartTime();
-                System.out.println("MONTHLY:- " + pte.getMonthlyWage());
-                break;
+        EmployeeWageBuilder sample = new EmployeeWageBuilder("Sample-Company", 8, 4, 20, 20);
 
-            default:
-                System.out.println("INVALID OPTION");
-                break;
-        }
-    }
-}
+        int totalHours = 0, totalWage = 0;
+        for(int i=0; i<sample.WORKING_DAYS; i++){
+            if(totalHours >= 100) break;
 
-class Employee{
-    private int hours = 8;   //Full Time Hours
-    private int wage = 20;    //Full Time Wage
-    public int days = 20;
+            int type = (int)Math.floor(Math.random() * 10) % 3;
+            switch (type) {
+                case 1:
+                    totalWage += sample.WAGE_PER_HOUR * sample.HOURS_FULL_TIME;
+                    break;
+                
+                case 2:
+                    totalWage += sample.WAGE_PER_HOUR * sample.HOURS_PART_TIME;
+                    break;
 
-    public int getHours() {
-        return hours;
-    }
-
-    public int getWage() {
-        return wage;
-    }
-
-    boolean isPresent(){
-        Random random = new Random();
-        if(random.nextDouble(0, 1) > 0.5){
-            return true;
-        } else{
-            return false;
-        }
-    }
-
-    int getMonthlyWage(){
-        int totalwage = 0;
-
-        int counter = 0;
-        for(int i=0; i<this.days; i++){
-            if(counter >= 100) break;
-            
-            if(this.isPresent()){
-                totalwage += (this.hours * this.wage);
-                counter += this.hours;
+                // ABSENT CASE:-
+                default:
+                    totalWage += 0;
+                    break;
             }
         }
 
-        return totalwage;
-    }
-}
+        System.out.println("TOTAL WAGE: " + totalWage);
 
-class FullTime extends Employee{
-    int getDailyWage(){
-        if(this.isPresent()) return (this.getHours() * this.getWage());
-        else return 0;
+        scanner.close();
     }
-}
 
-class PartTime extends Employee{
-    int getDailyWage(){
-        if(this.isPresent()) return (this.getHours() * this.getWage());
-        else return 0;
+    static class EmployeeWageBuilder{
+        public static final int IS_FULL_TIME = 1;
+        public static final int IS_PART_TIME = 2;
+
+        final String COMPANY;
+        final int HOURS_FULL_TIME, HOURS_PART_TIME, WAGE_PER_HOUR, WORKING_DAYS;
+
+        EmployeeWageBuilder(String COMPANY, int HOURS_FULL_TIME, int HOURS_PART_TIME, int WAGE_PER_HOUR, int WORKING_DAYS){
+            this.COMPANY = COMPANY;
+            this.HOURS_FULL_TIME = HOURS_FULL_TIME;
+            this.HOURS_PART_TIME = HOURS_PART_TIME;
+            this.WAGE_PER_HOUR = WAGE_PER_HOUR;
+            this.WORKING_DAYS = WORKING_DAYS;
+        }
     }
 }

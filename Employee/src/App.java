@@ -4,34 +4,11 @@ public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome To Employee Wage Computation: ");
         
-        Scanner scanner = new Scanner(System.in);
+        EmployeeWageBuilder company1 = new EmployeeWageBuilder("Company - 1", 8, 4, 20, 20);
+        EmployeeWageBuilder company2 = new EmployeeWageBuilder("Company - 2", 7, 3, 24, 20);
 
-        EmployeeWageBuilder sample = new EmployeeWageBuilder("Sample-Company", 8, 4, 20, 20);
-
-        int totalHours = 0, totalWage = 0;
-        for(int i=0; i<sample.WORKING_DAYS; i++){
-            if(totalHours >= 100) break;
-
-            int type = (int)Math.floor(Math.random() * 10) % 3;
-            switch (type) {
-                case 1:
-                    totalWage += sample.WAGE_PER_HOUR * sample.HOURS_FULL_TIME;
-                    break;
-                
-                case 2:
-                    totalWage += sample.WAGE_PER_HOUR * sample.HOURS_PART_TIME;
-                    break;
-
-                // ABSENT CASE:-
-                default:
-                    totalWage += 0;
-                    break;
-            }
-        }
-
-        System.out.println("TOTAL WAGE: " + totalWage);
-
-        scanner.close();
+        EmployeeWageBuilder.calculateWage(company1);
+        EmployeeWageBuilder.calculateWage(company2);
     }
 
     static class EmployeeWageBuilder{
@@ -47,6 +24,34 @@ public class App {
             this.HOURS_PART_TIME = HOURS_PART_TIME;
             this.WAGE_PER_HOUR = WAGE_PER_HOUR;
             this.WORKING_DAYS = WORKING_DAYS;
+        }
+
+        public static int calculateWage(EmployeeWageBuilder company){
+            int totalHours = 0, totalWage = 0;
+            for(int i=0; i<company.WORKING_DAYS; i++){
+                if(totalHours >= 100) break;
+
+                int type = (int)Math.floor(Math.random() * 10) % 3;
+                switch (type) {
+                    case 1:
+                        totalWage += company.WAGE_PER_HOUR * company.HOURS_FULL_TIME;
+                        break;
+                    
+                    case 2:
+                        totalWage += company.WAGE_PER_HOUR * company.HOURS_PART_TIME;
+                        break;
+
+                    // ABSENT CASE:-
+                    default:
+                        totalWage += 0;
+                        break;
+                }
+            }
+
+            System.out.println("COMPANY: " + company.COMPANY);
+            System.out.println("TOTAL WAGE: " + totalWage);
+
+            return totalWage;
         }
     }
 }

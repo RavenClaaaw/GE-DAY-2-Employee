@@ -2,8 +2,6 @@ import java.util.ArrayList;
 
 public class EmployeeWageBuilder implements EmployeeWageBuilderInterface{
     public ArrayList<Integer> calculateWage(ArrayList<Company> companies){
-        ArrayList<Integer> wages = new ArrayList<>();
-        
         for(Company company : companies){
             int totalHours = 0, totalWage = 0;
 

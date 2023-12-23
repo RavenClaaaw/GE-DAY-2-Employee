@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        // COMMIT
         System.out.println("Welcome To Employee Wage Computation: ");
         
         ArrayList<Integer> wages = new ArrayList<>();

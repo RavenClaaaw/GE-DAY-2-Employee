@@ -10,9 +10,10 @@ public class App {
         companies.add(new Company("Google", 8, 4, 20, 20));
         companies.add(new Company("Microsoft", 8, 4, 25, 25));
         
-        ArrayList<Integer> totalwages = EWB.calculateWage(companies);
+        Wage totalwages = EWB.calculateWage(companies);
         for(int i=0; i<companies.size(); i++){
-            System.out.println("\nCOMPANY:- " + companies.get(i).COMPANY_NAME + "\nTotal Wage:- " + totalwages.get(i));
+            System.out.println("\nCOMPANY:- " + companies.get(i).COMPANY_NAME + "\nTotal Wage:- " + totalwages.monthlyWage.get(i));
+            System.out.println(totalwages.dailyWage.get(i));
         }
     }
 }

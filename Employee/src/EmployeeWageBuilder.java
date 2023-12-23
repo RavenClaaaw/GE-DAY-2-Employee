@@ -1,10 +1,7 @@
 import java.util.ArrayList;
 
-public class EmployeeWageBuilder {
-    public static final int IS_FULL_TIME = 1;
-    public static final int IS_PART_TIME = 2;
-
-    public static ArrayList<Integer> calculateWage(ArrayList<Company> companies){
+public class EmployeeWageBuilder implements EmployeeWageBuilderInterface{
+    public ArrayList<Integer> calculateWage(ArrayList<Company> companies){
         ArrayList<Integer> wages = new ArrayList<>();
         
         for(Company company : companies){

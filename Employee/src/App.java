@@ -1,14 +1,16 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome To Employee Wage Computation: ");
         
+        ArrayList<Integer> wages = new ArrayList<>();
         EmployeeWageBuilder company1 = new EmployeeWageBuilder("Company - 1", 8, 4, 20, 20);
         EmployeeWageBuilder company2 = new EmployeeWageBuilder("Company - 2", 7, 3, 24, 20);
 
-        EmployeeWageBuilder.calculateWage(company1);
-        EmployeeWageBuilder.calculateWage(company2);
+        wages.add(EmployeeWageBuilder.calculateWage(company1));
+        wages.add(EmployeeWageBuilder.calculateWage(company2));
     }
 }
 

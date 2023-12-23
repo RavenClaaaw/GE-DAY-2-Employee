@@ -1,33 +1,42 @@
 import java.util.ArrayList;
 
 public class EmployeeWageBuilder implements EmployeeWageBuilderInterface{
-    public ArrayList<Integer> calculateWage(ArrayList<Company> companies){
+    public Wage calculateWage(ArrayList<Company> companies){
+        Wage wage = new Wage();
+
         for(Company company : companies){
             int totalHours = 0, totalWage = 0;
 
+            ArrayList<Integer> dailyWage = new ArrayList<>();
             for(int i=0; i<company.WORKING_DAYS; i++){
                 if(totalHours >= 100) break;
 
                 int type = (int)Math.floor(Math.random() * 10) % 3;
+
+                int value = 0;
                 switch (type) {
                     case 1:
-                        totalWage += company.WAGE_PER_HOUR * company.HOURS_FULL_TIME;
+                        value = company.WAGE_PER_HOUR * company.HOURS_FULL_TIME;
                         break;
                     
                     case 2:
-                        totalWage += company.WAGE_PER_HOUR * company.HOURS_PART_TIME;
+                        value = company.WAGE_PER_HOUR * company.HOURS_PART_TIME;
                         break;
 
                     // ABSENT CASE:-
                     default:
-                        totalWage += 0;
+                        value = 0;
                         break;
                 }
+
+                totalWage += value;
+                dailyWage.add(value);
             }
 
-            wages.add(totalWage);
+            wage.monthlyWage.add(totalWage);
+            wage.dailyWage.add(dailyWage);
         }
 
-        return wages;
+        return wage;
     }
 }

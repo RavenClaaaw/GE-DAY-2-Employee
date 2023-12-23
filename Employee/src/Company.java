@@ -1,0 +1,12 @@
+public class Company {
+    final String COMPANY_NAME;
+    final int HOURS_FULL_TIME, HOURS_PART_TIME, WAGE_PER_HOUR, WORKING_DAYS;
+
+    Company(String COMPANY_NAME, int HOURS_FULL_TIME, int HOURS_PART_TIME, int WAGE_PER_HOUR, int WORKING_DAYS){
+        this.COMPANY_NAME = COMPANY_NAME;
+        this.HOURS_FULL_TIME = HOURS_FULL_TIME;
+        this.HOURS_PART_TIME = HOURS_PART_TIME;
+        this.WAGE_PER_HOUR = WAGE_PER_HOUR;
+        this.WORKING_DAYS = WORKING_DAYS;
+    }
+}

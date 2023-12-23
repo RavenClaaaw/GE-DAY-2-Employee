@@ -39,4 +39,9 @@ public class EmployeeWageBuilder implements EmployeeWageBuilderInterface{
 
         return wage;
     }
+
+    public void getWage(int index, Wage wage){
+        System.out.println("THE MONTHLY WAGE:- " + wage.monthlyWage.get(index));
+        System.out.println("THE DAILY WAGE:- " + wage.dailyWage.get(index));        
+    }
 }

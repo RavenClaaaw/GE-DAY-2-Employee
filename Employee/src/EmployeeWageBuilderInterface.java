@@ -7,4 +7,5 @@ public interface EmployeeWageBuilderInterface {
     public ArrayList<ArrayList<Integer>> dailyWages = new ArrayList<>();
     
     public Wage calculateWage(ArrayList<Company> companies);
+    public void getWage(int index, Wage wage);
 }
